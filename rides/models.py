@@ -38,9 +38,16 @@ class RideRequest(models.Model):
         return self.ride_type == RideType.SHARING and self.is_share_open and self.shared_by is None and self.status == RideStatus.REQUESTED
 
 class Driver(models.Model):
+    user = models.OneToOneField(settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name='driver_profile', null=True, blank=True)
     name = models.CharField(max_length=100)
+    phone_number = models.CharField(max_length=15, blank=True)
+    email = models.EmailField(unique=True, blank=True)
     vehicle_plate = models.CharField(max_length=20)
     is_active = models.BooleanField(default=True)
+    created_at = models.DateTimeField(default=timezone.now)
+
+    def __str__(self):
+        return f"{self.name} - {self.vehicle_plate}"
 
 class Assignment(models.Model):
     ride = models.OneToOneField(RideRequest, on_delete=models.CASCADE, related_name='assignment')

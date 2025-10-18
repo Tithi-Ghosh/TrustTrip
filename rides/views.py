@@ -1,7 +1,8 @@
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth import authenticate, login
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
-from .forms import RideRequestForm
+from .forms import RideRequestForm, DriverLoginForm, RiderSignupForm, DriverSignupForm
 from .models import RideRequest, RideType, RideStatus, Driver, Assignment
 
 def home(request):
@@ -71,3 +72,58 @@ def assign_driver(request, ride_id):
     ride.save()
     messages.success(request, 'Driver assigned.')
     return redirect('rides:ride_detail', ride_id=ride.id)
+
+def driver_login(request):
+    if request.method == 'POST':
+        form = DriverLoginForm(request, data=request.POST)
+        if form.is_valid():
+            username = form.cleaned_data.get('username')
+            password = form.cleaned_data.get('password')
+            user = authenticate(username=username, password=password)
+            if user is not None and hasattr(user, 'driver_profile'):
+                login(request, user)
+                messages.success(request, f'Welcome back, {user.driver_profile.name}!')
+                return redirect('rides:driver_dashboard')
+            else:
+                messages.error(request, 'Invalid credentials or not a driver account.')
+        else:
+            messages.error(request, 'Invalid form submission.')
+    else:
+        form = DriverLoginForm()
+    return render(request, 'driver_login.html', {'form': form})
+
+@login_required
+def driver_dashboard(request):
+    if not hasattr(request.user, 'driver_profile'):
+        messages.error(request, 'Access denied. Driver account required.')
+        return redirect('home')
+    driver = request.user.driver_profile
+    assigned_rides = Assignment.objects.filter(driver=driver).select_related('ride').order_by('-assigned_at')
+    return render(request, 'driver_dashboard.html', {
+        'driver': driver,
+        'assigned_rides': assigned_rides
+    })
+
+def rider_signup(request):
+    if request.method == 'POST':
+        form = RiderSignupForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, 'Account created successfully!')
+            return redirect('rides:dashboard')
+    else:
+        form = RiderSignupForm()
+    return render(request, 'rider_signup.html', {'form': form})
+
+def driver_signup(request):
+    if request.method == 'POST':
+        form = DriverSignupForm(request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user)
+            messages.success(request, 'Driver account created successfully!')
+            return redirect('rides:driver_dashboard')
+    else:
+        form = DriverSignupForm()
+    return render(request, 'driver_signup.html', {'form': form})

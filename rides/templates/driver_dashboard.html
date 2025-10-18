@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="glow">Driver Dashboard</h2>
+
+<section class="panel">
+  <h3>Welcome, {{ driver.name }}</h3>
+  <p>Vehicle: {{ driver.vehicle_plate }}</p>
+  <p>Phone: {{ driver.phone_number }}</p>
+  <p>Email: {{ driver.email }}</p>
+  <p>Status: {% if driver.is_active %}Active{% else %}Inactive{% endif %}</p>
+</section>
+
+<section class="panel">
+  <h3>Assigned Rides</h3>
+  <ul class="ride-list">
+    {% for assignment in assigned_rides %}
+      <li class="ride-item">
+        <div>
+          <strong>{{ assignment.ride.pickup_address }}</strong> → {{ assignment.ride.dropoff_address }}
+          <span class="badge">{{ assignment.ride.ride_type }}</span>
+          <span class="badge status">{{ assignment.ride.status }}</span>
+        </div>
+        <div>
+          Fare: ৳ {{ assignment.ride.fare }}
+          <small>Assigned at: {{ assignment.assigned_at }}</small>
+        </div>
+      </li>
+    {% empty %}
+      <li>No assigned rides yet.</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

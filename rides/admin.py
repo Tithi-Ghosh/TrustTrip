@@ -7,5 +7,10 @@ class RideRequestAdmin(admin.ModelAdmin):
     list_filter = ('ride_type','status','is_share_open')
     search_fields = ('pickup_address','dropoff_address','rider__username')
 
-admin.site.register(Driver)
+@admin.register(Driver)
+class DriverAdmin(admin.ModelAdmin):
+    list_display = ('name', 'vehicle_plate', 'phone_number', 'email', 'is_active', 'user')
+    list_filter = ('is_active',)
+    search_fields = ('name', 'vehicle_plate', 'phone_number', 'email', 'user__username')
+
 admin.site.register(Assignment)

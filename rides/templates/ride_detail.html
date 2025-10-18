@@ -12,7 +12,7 @@
     <div class="actions">
       <a class="neo-button" href="{% url 'rides:assign_driver' ride.id %}">Assign driver</a>
       {% if ride.ride_type == 'SHARING' and ride.is_share_open and not ride.shared_by %}
-        <span class="badge">Waiting for second rider to join</span>
+        <span class="badge">Waiting for second user to join</span>
       {% elif ride.shared_by %}
         <span class="badge">Shared with @{{ ride.shared_by.username }}</span>
       {% endif %}

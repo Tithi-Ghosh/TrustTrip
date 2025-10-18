@@ -19,7 +19,10 @@
         </form>
 
       {% else %}
-        <a href="{% url 'login' %}" class="neo-button">Login</a>
+        <a href="{% url 'login' %}" class="neo-button">User Login</a>
+        <a href="{% url 'rides:rider_signup' %}" class="neo-link">User Signup</a>
+        <a href="{% url 'rides:driver_login' %}" class="neo-link">Driver Login</a>
+        <a href="{% url 'rides:driver_signup' %}" class="neo-link">Driver Signup</a>
       {% endif %}
     </nav>
   </header>
