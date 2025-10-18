@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="glow">Dashboard</h2>
+
+<section class="panel">
+  <h3>My rides</h3>
+  <ul class="ride-list">
+    {% for r in my_rides %}
+      <li class="ride-item">
+        <div>
+          <strong>{{ r.pickup_address }}</strong> → {{ r.dropoff_address }}
+          <span class="badge">{{ r.ride_type }}</span>
+          <span class="badge status">{{ r.status }}</span>
+        </div>
+        <div>
+          Fare (you pay): ৳ {{ r.fare }}
+          <a href="{% url 'rides:ride_detail' r.id %}" class="neo-link">Details</a>
+        </div>
+      </li>
+    {% empty %}
+      <li>No rides yet. <a class="neo-link" href="{% url 'rides:create_ride' %}">Request one</a>.</li>
+    {% endfor %}
+  </ul>
+</section>
+
+<section class="panel">
+  <h3>Open shared rides</h3>
+  <ul class="ride-list">
+    {% for r in open_shares %}
+      <li class="ride-item">
+        <div>
+          <strong>{{ r.pickup_address }}</strong> → {{ r.dropoff_address }}
+          <span class="badge">SHARING</span>
+        </div>
+        <div>
+          Total fare: ৳ {{ r.fare|floatformat:2 }} (split by 2)
+          <a href="{% url 'rides:join_share' r.id %}" class="neo-button">Join share</a>
+        </div>
+      </li>
+    {% empty %}
+      <li>No open shared rides right now.</li>
+    {% endfor %}
+  </ul>
+</section>
+{% endblock %}

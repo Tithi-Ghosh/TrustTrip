@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="auth-box">
+  <h2 class="glow">Login</h2>
+  <form method="post" class="neo-form">
+    {% csrf_token %}
+    <label>Username</label>
+    <input type="text" name="username" required>
+    <label>Password</label>
+    <input type="password" name="password" required>
+    <button type="submit" class="neo-button">Enter Neon</button>
+  </form>
+</div>
+{% endblock %}

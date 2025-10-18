@@ -1,0 +1,46 @@
+:root{
+  --neo-bg:#0a0f1f;
+  --neo-card:#111631;
+  --neo-accent:#12f7ff;
+  --neo-pink:#ff2daa;
+  --neo-text:#d7e0ff;
+  --neo-muted:#8aa0d1;
+}
+
+*{box-sizing:border-box}
+body.neo-bg{background:linear-gradient(180deg,#080c1a,#0a0f1f 60%,#0d1228); 
+color:var(--neo-text); font-family:Inter,system-ui,Segoe UI,Arial}
+.container{max-width:1000px;margin:0 auto;padding:50px}
+
+.neo-header{display:flex;justify-content:space-between;align-items:center;padding:16px 24px;background:#090e1e;border-bottom:1px solid #1a2247; position:sticky; top:0; z-index:10}
+.logo{font-weight:800;letter-spacing:1px}
+.logo span{color:var(--neo-accent); text-shadow:0 0 12px var(--neo-accent)}
+
+.neo-link{color:var(--neo-accent); text-decoration:none; margin-right:16px}
+.neo-button{background:transparent;border:1px solid var(--neo-accent);color:var(--neo-accent);padding:8px 14px;border-radius:6px; transition:all .2s}
+.neo-button:hover{background:rgba(18,247,255,.1); box-shadow:0 0 12px var(--neo-accent)}
+
+.neo-cta{background:linear-gradient(90deg, var(--neo-pink), var(--neo-accent)); color:#021018; border:none; padding:10px 18px;border-radius:6px; text-decoration:none; display:inline-block; font-weight:700; box-shadow:0 0 18px rgba(255,45,170,.3)}
+.neo-cta:hover{filter:saturate(1.2)}
+
+.hero{padding:60px 0; text-align:center}
+.glow{text-shadow:0 0 8px var(--neo-accent), 0 0 18px rgba(18,247,255,.3)}
+
+.panel{background:var(--neo-card); border:1px solid #1a2247; border-radius:12px; padding:16px; margin:16px 0; box-shadow:0 0 24px rgba(18,247,255,.07)}
+.panel.nested{margin-top:12px}
+
+.ride-list{list-style:none;padding:0;margin:0}
+.ride-item{display:flex;justify-content:space-between;align-items:center;padding:12px;border-bottom:1px solid #1a2247}
+.badge{display:inline-block;background:#0f1430;border:1px solid #26306b;color:var(--neo-muted);padding:2px 8px;border-radius:999px;margin-left:8px; font-size:12px}
+.badge.status{color:#a8ffea;border-color:#34e0c4}
+
+.neo-form input, .neo-form select, .neo-form textarea{
+  width:100%;padding:10px;border-radius:8px;border:1px solid #26306b;background:#0b1030;color:var(--neo-text); margin-bottom:12px
+}
+.neo-form label{color:var(--neo-muted); font-size:14px; margin-bottom:6px; display:block}
+
+.flash{margin:8px 0}
+.flash-item{background:#0e1433;border-left:3px solid var(--neo-accent);padding:10px;border-radius:6px;margin-bottom:8px}
+
+.auth-box{max-width:420px;margin:40px auto}
+.neo-footer{padding:20px;text-align:center;color:var(--neo-muted);border-top:1px solid #1a2247;margin-top:40px}

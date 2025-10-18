@@ -1,0 +1,18 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2 class="glow">Request a ride</h2>
+<form method="post" class="neo-form">
+  {% csrf_token %}
+  <label>Pickup address</label>
+  {{ form.pickup_address }}
+  <label>Dropoff address</label>
+  {{ form.dropoff_address }}
+  <label>Pickup time</label>
+  {{ form.pickup_time }}
+  <label>Ride type</label>
+  {{ form.ride_type }}
+  <label>Estimated distance (km)</label>
+  {{ form.distance_km }}
+  <button type="submit" class="neo-cta">Request</button>
+</form>
+{% endblock %}

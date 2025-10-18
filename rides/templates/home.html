@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="hero">
+  <h1 class="glow">Safer, Gender-Aware, Ride Booking</h1>
+  <p>Book personal or shared rides.</p>
+  <div class="cta">
+    <a href="{% url 'rides:create_ride' %}" class="neo-cta">Request a ride</a>
+  </div>
+</section>
+{% endblock %}

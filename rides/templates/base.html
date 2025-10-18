@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>TrustTrip</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="/static/css/neon.css" rel="stylesheet">
+</head>
+<body class="neo-bg">
+  <header class="neo-header">
+    <div class="logo">Trust<span>Trip</span></div>
+    <nav>
+      {% if user.is_authenticated %}
+        <a href="{% url 'rides:dashboard' %}" class="neo-link">Dashboard</a>
+        <a href="{% url 'rides:create_ride' %}" class="neo-link">Request ride</a>
+        <form method="post" action="{% url 'logout' %}" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" class="neo-button">Logout</button>
+        </form>
+
+      {% else %}
+        <a href="{% url 'login' %}" class="neo-button">Login</a>
+      {% endif %}
+    </nav>
+  </header>
+  <main class="container">
+    {% if messages %}
+      <div class="flash">
+        {% for m in messages %}
+          <div class="flash-item">{{ m }}</div>
+        {% endfor %}
+      </div>
+    {% endif %}
+    {% block content %}{% endblock %}
+  </main>
+  <footer class="neo-footer">© TrustTrip — Dhaka vibes</footer>
+</body>
+</html>

@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+<section class="panel">
+  <h2 class="glow">Ride #{{ ride.id }}</h2>
+  <p><strong>From:</strong> {{ ride.pickup_address }}</p>
+  <p><strong>To:</strong> {{ ride.dropoff_address }}</p>
+  <p><strong>Type:</strong> {{ ride.ride_type }}</p>
+  <p><strong>Status:</strong> {{ ride.status }}</p>
+  <p><strong>Your fare:</strong> ৳ {{ ride.fare }}</p>
+
+  {% if ride.status == 'REQUESTED' %}
+    <div class="actions">
+      <a class="neo-button" href="{% url 'rides:assign_driver' ride.id %}">Assign driver</a>
+      {% if ride.ride_type == 'SHARING' and ride.is_share_open and not ride.shared_by %}
+        <span class="badge">Waiting for second rider to join</span>
+      {% elif ride.shared_by %}
+        <span class="badge">Shared with @{{ ride.shared_by.username }}</span>
+      {% endif %}
+    </div>
+  {% endif %}
+
+  {% if ride.assignment %}
+  <div class="panel nested">
+    <h3>Driver</h3>
+    <p><strong>{{ ride.assignment.driver.name }}</strong> — Plate: {{ ride.assignment.driver.vehicle_plate }}</p>
+  </div>
+  {% endif %}
+</section>
+{% endblock %}
