@@ -1,7 +1,7 @@
 # Trust Trip
 git clone https://github.com/Tithi-Ghosh/TrustTrip.git
 
-cd TrustTrip
+cd .\TrustTrip\TrustTrip\
 
 python -m venv venv
 
