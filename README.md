@@ -1,4 +1,8 @@
 # Trust Trip
+git clone https://github.com/Tithi-Ghosh/TrustTrip.git
+
+cd TrustTrip
+
 python -m venv venv
 
 venv\Scripts\activate
