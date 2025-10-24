@@ -7,7 +7,7 @@ python -m venv venv
 
 venv\Scripts\activate
 
->Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
+#Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
 
 pip install -r requirements.txt
 
