@@ -15,7 +15,7 @@ def reg_user(request):
         email = request.POST.get('email')
         # check if username exists
         if User.objects.filter(username=username).exists():
-            return redirect('core:register_user')
+            return redirect('home')
 
         # create user
         user = User.objects.create_user(username=username, email=email, password=password)
@@ -82,6 +82,7 @@ def driver_profile(request):
         return redirect("home")
 
     return render(request, 'core/driver_profile.html', {'driver': driver})
+
 
 @login_required
 def update_user(request):
