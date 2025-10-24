@@ -25,6 +25,7 @@ urlpatterns = [
     path('', home, name='home'),
     path('',include('core.urls')),
     path('',include('booking_n_service.urls')),
+    path('',include('support_n_notification.urls')),
 ]
 
 
