@@ -1,10 +1,6 @@
 from django.contrib import admin
 
-# Register your models here.from django.contrib import admin
-from .models import BookingDriverSide, BookingUserSide, Payment, Review
+from .models import UserProfile, Driver
 
-admin.site.register(BookingDriverSide)
-admin.site.register(BookingUserSide)
-admin.site.register(Payment)
-admin.site.register(Review)
-
+admin.site.register(UserProfile)
+admin.site.register(Driver)
