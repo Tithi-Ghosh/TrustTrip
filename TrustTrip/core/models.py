@@ -42,4 +42,4 @@ class Driver(models.Model):
     rating = models.DecimalField(max_digits=3, decimal_places=2, default=0, blank=True)
 
     def __str__(self):
-        return f"{self.user.get_full_name()} - {self.vehicle_plate}"
+        return f"{self.user.username} - {self.vehicle_plate}"

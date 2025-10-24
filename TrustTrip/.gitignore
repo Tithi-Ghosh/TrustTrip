@@ -1,0 +1,22 @@
+# Python ignores
+__pycache__/
+*.py[cod]
+*.sqlite3
+
+# Django files
+db.sqlite3
+/staticfiles/
+media/
+
+# Environment files
+*.env
+.venv
+
+# Virtual environment
+venv/
+env/
+
+# IDE / system
+.vscode/
+.idea/
+.DS_Store
